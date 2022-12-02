@@ -75,6 +75,15 @@ $darkColor: #2f2d52;
         cursor: pointer;
       }
 
+      button:hover {
+        background-color: #5176ed;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+      }
+
       label {
         display: flex;
         align-items: center;
@@ -86,7 +95,13 @@ $darkColor: #2f2d52;
         img {
           width: 32px;
         }
+
+        &:hover {
+          color: #2855eb;
+        }
       }
+
+      
     }
 
     p {

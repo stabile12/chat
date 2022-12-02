@@ -3,10 +3,13 @@ import {  ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, storage, db } from '../firebase';
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import Add from '../img/addAvatar.png';
 
 const Register = () => {
   const [err, setErr] = useState(false)
+  const navigate = useNavigate()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const displayName = e.target[0].value;
@@ -40,16 +43,18 @@ const Register = () => {
               email,
               photoURL: downloadURL,
             })
+
+            // cria coleção userChats na base de dados com o id de usuário
+            await setDoc(doc(db, 'userChats', res.user.uid), {})
+            navigate('/');
           });
         }
       );
-
     } catch (err) {
       setErr(true)
     }
-
-
   }
+
   return (
     <div className="formContainer">
       <div className="formWrapper">
@@ -67,7 +72,7 @@ const Register = () => {
           <button>Criar Conta</button>
           {err && <span>Algo deu errado!</span>}
         </form>
-        <p>Já tem uma conta? Entrar</p>
+        <p>Já tem uma conta? <Link to='/login'>Entrar</Link></p>
       </div>
     </div>
   )
