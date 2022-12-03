@@ -207,6 +207,11 @@ $darkColor: #2f2d52;
 
         .searchForm {
           padding: 10px;
+          @include mobile {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+          }
 
           input {
             background-color: transparent;
@@ -217,6 +222,14 @@ $darkColor: #2f2d52;
             &::placeholder {
               color: lightgray;
             }
+          }
+
+          button {
+            background-color: #5d5b8d;
+            color: #ddddf7;
+            font-size: 15px;
+            border: none;
+
           }
         }
       }
